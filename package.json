@@ -1,0 +1,80 @@
+{
+  "name": "nuxt-module-graph",
+  "version": "0.0.1",
+  "description": "Explore Nuxt module dependencies in Nuxt DevTools",
+  "license": "MIT",
+  "author": "Estéban Soubiran <esteban@soubiran.dev>",
+  "funding": "https://github.com/sponsors/Barbapapazes",
+  "homepage": "https://github.com/Barbapapazes/nuxt-module-graph#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barbapapazes/nuxt-module-graph.git"
+  },
+  "bugs": "https://github.com/Barbapapazes/nuxt-module-graph/issues",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "devtools",
+    "graph",
+    "dependencies"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "nuxt-module-build build && pnpm client:build",
+    "prepack": "pnpm build",
+    "release": "bumpp --sign",
+    "client:build": "nuxt generate client",
+    "client:dev": "nuxt dev client --host 127.0.0.1 --port 3300",
+    "dev": "pnpm play:dev",
+    "dev:prepare": "nuxt-module-build prepare && nuxt prepare client && nuxt prepare .playground",
+    "prepare": "pnpm dev:prepare",
+    "play:dev": "nuxt dev .playground",
+    "play:prod": "pnpm prepack && pnpm play:dev",
+    "typecheck": "tsc --noEmit && nuxt typecheck client && nuxt typecheck .playground"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^2.0.4",
+    "@nuxt/devtools-kit": "4.0.0-beta.2",
+    "@nuxt/kit": "^4.5.2",
+    "@vitejs/devtools-kit": "^0.7.6",
+    "sirv": "^3.0.2",
+    "ufo": "^1.6.4"
+  },
+  "peerDependencies": {
+    "@nuxt/devtools": "4.0.0-beta.2",
+    "nuxt": "^4.5.2"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "4.0.0-beta.2",
+    "@nuxt/devtools-ui-kit": "4.0.0-beta.2",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.5.2",
+    "@types/node": "^26.5.0",
+    "bumpp": "^12.3.0",
+    "changelogithub": "^15.0.5",
+    "nuxt": "^4.5.2",
+    "typescript": "^5.9.3",
+    "vis-data": "^8.0.5",
+    "vis-network": "^10.1.2",
+    "vue": "^3.5.41",
+    "vue-tsc": "^3.3.11"
+  },
+  "packageManager": "pnpm@11.27.1"
+}

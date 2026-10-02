@@ -1,0 +1,7 @@
+# Keep Nuxt's builder and DevTools on the same Vite integration.
+overrides:
+  vite: 8.3.1
+
+allowBuilds:
+  esbuild: false
+  vue-demi: false
